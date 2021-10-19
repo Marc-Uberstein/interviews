@@ -11,25 +11,25 @@ namespace Holidays.IntegrationTests
         [Test]
         public async Task Get_Holidays_By_Year_Called_Successfully()
         {
-            var response = await TestClient.GetAsync("api/Holidays/2021");
+            var response = await TestClient.GetAsync("api/Holidays/year/2021");
 
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
 
             var holidays = await ConvertResponse(response);
 
-            Assert.AreEqual(18, holidays.Count);
+            Assert.AreEqual(19, holidays.Count);
         }
 
         [Test]
         public async Task Get_Holidays_By_Month_Called_Successfully()
         {
-            var response = await TestClient.GetAsync("api/Holidays/04");
+            var response = await TestClient.GetAsync("api/Holidays/month/04");
 
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
 
             var holidays = await ConvertResponse(response);
 
-            Assert.AreEqual(4, holidays.Count);
+            Assert.AreEqual(5, holidays.Count);
         }
     }
 }

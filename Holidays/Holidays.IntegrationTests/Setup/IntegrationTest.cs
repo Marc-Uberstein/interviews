@@ -32,20 +32,22 @@ namespace Holidays.IntegrationTests.Setup
 
             ServiceProvider = appFactory.Services;
 
-            SeedDb();
+            SeedDb(2021);
+            SeedDb(2020);
+            SeedDb(2019);
         }
 
-        private void SeedDb()
+        private void SeedDb(int year)
         {
             using var scope = ServiceProvider.CreateScope();
             var context = scope.ServiceProvider.GetRequiredService<HolidayContext>();
-            context.Holidays.Add(new Holiday { Id = Guid.NewGuid(), Name = HolidayNames.InceptionDay, Date = new DateTime(1992, 04, 05) });
-            context.Holidays.Add(new Holiday { Id = Guid.NewGuid(), Name = HolidayNames.JeffsBirthday, Date = new DateTime(1992, 03, 26) });
-            context.Holidays.Add(new Holiday { Id = Guid.NewGuid(), Name = HolidayNames.MsIgniteDay, Date = new DateTime(1992, 10, 13) });
-            context.Holidays.Add(new Holiday { Id = Guid.NewGuid(), Name = HolidayNames.PolkadotDay, Date = new DateTime(1992, 08, 08) });
-            context.Holidays.Add(new Holiday { Id = Guid.NewGuid(), Name = HolidayNames.CreativeDay, Date = new DateTime(1992, 01, 18) });
-            context.Holidays.Add(new Holiday { Id = Guid.NewGuid(), Name = HolidayNames.SpaceDay, Date = new DateTime(1992, 07, 19) });
-            context.Holidays.Add(new Holiday { Id = Guid.NewGuid(), Name = HolidayNames.BmwDay, Date = new DateTime(1992, 04, 25) });
+            context.Holidays.Add(new Holiday { Id = Guid.NewGuid(), Name = HolidayNames.InceptionDay, Date = new DateTime(year, 04, 05) });
+            context.Holidays.Add(new Holiday { Id = Guid.NewGuid(), Name = HolidayNames.JeffsBirthday, Date = new DateTime(year, 03, 26) });
+            context.Holidays.Add(new Holiday { Id = Guid.NewGuid(), Name = HolidayNames.MsIgniteDay, Date = new DateTime(year, 10, 13) });
+            context.Holidays.Add(new Holiday { Id = Guid.NewGuid(), Name = HolidayNames.PolkadotDay, Date = new DateTime(year, 08, 08) });
+            context.Holidays.Add(new Holiday { Id = Guid.NewGuid(), Name = HolidayNames.CreativeDay, Date = new DateTime(year, 01, 18) });
+            context.Holidays.Add(new Holiday { Id = Guid.NewGuid(), Name = HolidayNames.SpaceDay, Date = new DateTime(year, 07, 19) });
+            context.Holidays.Add(new Holiday { Id = Guid.NewGuid(), Name = HolidayNames.BmwDay, Date = new DateTime(year, 04, 25) });
             context.SaveChanges();
         }
 
